@@ -33,3 +33,21 @@ class CreateProjectSerializer(serializers.ModelSerializer):
                 "Description must be at least 30 characters long"
             )
         return value
+
+class DetailProjectSerializer(serializers.ModelSerializer):
+    """
+    Сериализатор для детального отображения одного проекта.
+    """
+    class Meta:
+        model = Project
+        fields = ('id', 'name', 'description', 'created_at', 'count_of_files')
+
+
+class ProjectShortInfoSerializer(serializers.ModelSerializer):
+    """
+    Краткий сериализатор для отображения информации о проекте.
+    Используется как вложенный сериализатор.
+    """
+    class Meta:
+        model = Project
+        fields = ('id', 'name')
